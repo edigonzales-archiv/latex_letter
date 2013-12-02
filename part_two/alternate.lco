@@ -1,0 +1,122 @@
+\ProvidesFile{alternate.lco}[%
+  2002/07/09 v0.9a LaTeX2e unsupported letter-class-option]
+
+\usepackage{fontspec}
+\usepackage{xltxtra}
+\usepackage{marvosym}
+\usepackage{graphicx}
+\usepackage[dvipdfm]{geometry}
+
+\KOMAoptions{foldmarks=false}
+\renewcommand*{\raggedsignature}{\raggedright}
+
+% ==============================================
+%  PERSONAL DATA
+% ==============================================
+\setkomavar{fromname}{Stefan Ziegler}
+\setkomavar{fromaddress}{Werkhofstrasse 17\\4500 Solothurn\\Schweiz}
+\setkomavar{fromphone}{+41 (0)79 5520498}
+\setkomavar{fromemail}{stefan.ziegler.de@gmail.com}
+%\setkomavar{fromfax}{+31 (0)71 5144543}
+%\setkomavar{fromurl}{http://stefano.italians.nl}
+%\setkomavar{frombank}{Postbank 9307157}
+\setkomavar{place}{Solothurn}
+\setkomavar{signature}{Stefan Ziegler}
+%\setkomavar{fromlogo}{\includegraphics[width=3cm]{sample_logo.eps}}
+
+% DIN standard
+%\LoadLetterOption{DINmtext}
+
+
+% ==============================================
+%  FORMATTING STUFF
+% ==============================================
+
+% === font settings
+\defaultfontfeatures{Mapping=tex-text}
+%\setmainfont {Adobe Garamond Pro}
+%\setmainfont[Mapping=tex-text, BoldFont={ZurichBT-Bold}]{Zurich Lt BT}
+
+% Fontforge -> Element -> Font Info -> Fontname
+\setmainfont[Mapping=tex-text,
+ BoldFont={Futura-Medium}]{FuturaOblique}
+
+%\setsansfont {Arial Narrow}
+\setsansfont {Zurich LtCn BT}
+
+
+
+% shift the page body on the left to make room for
+% our data and logo
+\setlength{\oddsidemargin}{\useplength{toaddrhpos}}%
+
+\addtolength{\oddsidemargin}{-1in}%
+% Take care that the shift stays intact even after recalculating the page
+% layout (see Kohm & Morawski 2005, section C.7)
+\l@addto@macro{\@typearea@end}{%
+  \setlength{\oddsidemargin}{\useplength{toaddrhpos}}%
+  \addtolength{\oddsidemargin}{-1in}%
+}
+
+
+
+% setup some lenghts
+\@setplength{firstheadvpos}{0pt}%
+\@setplength{firstheadwidth}{\paperwidth}%
+\@setplength{firstfootvpos}{\paperheight}%
+\@addtoplength[-]{firstfootvpos}{\useplength{toaddrvpos}}%
+\@addtoplength{refvpos}{-1.5\baselineskip}%
+\@newplength{infocolwidth}%
+% Kohm & Morawski 2005, C.7. Modifikationen (Modifications)
+\ifdim \textwidth<0.666\paperwidth
+  \@setplength{infocolwidth}{.22222\paperwidth}%
+\else
+  %\@setplength{infocolwidth}{0.1667\paperwidth}%
+  \@setplength{infocolwidth}{0.2\paperwidth}%
+\fi
+
+\setlength{\textwidth}{137mm}%
+
+% define new variable company
+\newkomavar{company}%
+%\setkomavar{company}{Initech}
+
+
+% fancy header for the first page
+\firsthead{%
+  \fontsize{8}{9}\sffamily
+  \hspace*{\fill}%
+  \begin{picture}(0,0)%
+    \put(0,0){\parbox[t]{\useplength{infocolwidth}}{%
+        \vspace{\useplength{toaddrvpos}}%
+        \usekomavar{fromlogo}%
+      }%
+    }%
+    \put(0,0){\parbox[t]{\useplength{infocolwidth}}{%
+        \raggedright
+        \vspace{\useplength{refvpos}}%
+        \vspace{\useplength{refaftervskip}}%
+        \usekomavar{place}\usekomavar{placeseparator}\\
+        \usekomavar{date}\\[10\baselineskip]
+        \usekomavar{fromname}
+        \ifkomavarempty{company}{}{%
+          \\
+          \usekomavar{company}%
+        }\\[\baselineskip]
+        \usekomavar{fromaddress}\\
+        \usekomavar*{fromphone}\usekomavar{fromphone}%
+        %\usekomavar*{fromphone}\usekomavar{fromphone}\\
+        %\usekomavar*{fromfax}\usekomavar{fromfax}%
+        \\[\baselineskip]
+        \usekomavar{fromemail}\\
+        \usekomavar{fromurl}
+      }%
+    }%
+  \end{picture}%
+  \hspace*{\useplength{infocolwidth}}%
+}%
+
+% avoid the display of the date in the default position
+\l@addto@macro\@firstheadfootfield{\setkomavar{date}{}}
+ 
+\endinput

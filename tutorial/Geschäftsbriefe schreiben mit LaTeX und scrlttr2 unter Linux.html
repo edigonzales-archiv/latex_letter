@@ -1,0 +1,957 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<!-- saved from url=(0037)http://14mb.de/u/ralubenow/latex.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   
+   <meta name="KeyWords" content="Latex,Linux,Tex,scrlttr2,koma">
+   <meta name="Author" content="hlubenow2 {at-symbol} gmx.net">
+   <title>Geschäftsbriefe schreiben mit LaTeX und scrlttr2 unter Linux</title>
+</head>
+<body>
+<h2>
+<img src="./Geschäftsbriefe schreiben mit LaTeX und scrlttr2 unter Linux_files/latex.png" width="64" height="32">
+Geschäftsbriefe schreiben mit LaTeX und scrlttr2 unter Linux
+</h2>
+<p>
+</p><hr width="70%">
+<p>
+<b><font face="Times New Roman,Times"><font size="-1">Jede Anwendung der
+hier beschriebenen Hinweise und Tips erfolgt ausschließlich auf eigene
+Gefahr. Keine Haftung für die Richtigkeit der Darstellung. Jegliche
+Haftung für irgendwelche Schäden aufgrund dieses Textes ist ausgeschlossen.</font></font></b>
+</p><p>
+</p><hr width="70%">
+<p>
+</p><h3>Inhalt:</h3>
+<ul>
+<li><a href="http://14mb.de/u/ralubenow/latex.html#1">1. Über Latex</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#2">2. Tutorials, auf die später gelegentlich verwiesen wird. Bücher zu Latex</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#3">3. Ein einfaches Latex-Dokument erzeugen, betrachten und ausdrucken</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#4">4. Anpassung an deutsche Verhältnisse: DIN-A4-Papier, Umlaute und KOMA-Skript-Klassen</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#5">5. Regeln für Leerzeichen und Maße; neue Zeilen und neue Absätze einfügen</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#6">6. 1,5- und 2-zeilige Zeilenabstände, Abstände nach Zeilen und Absätzen</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#7">7. Hängende Absätze</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#8">8. Linksbündig, rechtsbündig, zentriert. "Umgebungen"</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#9">9. Ein erster Brief mit scrlttr2</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#10">10. Fett, kursiv und unterstrichen</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#11">11. Schriftarten (Fonts) und Schriftgrößen</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#12">12. Kopf- und Fußzeile der ersten Seite</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#13">13. Konstanten Quelltext in eine ".lco"-Datei auslagern</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#14">14. Seitenränder, Größen und Positionen des Haupttextes und der anderen Briefelemente</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#15">15. Einfügen von Datum, Seitenzahlen und Sonderzeichen</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#16">16. Besonderheiten bei der Eingabe bestimmter Zeichen, insbesondere Anführungszeichen</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#17">17. Korrektureingriffe: Manueller Seitenumbruch</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#18">18. Aufzählungen</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#19">19. Tabellen</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#20">20. Linien</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#21">21. Textfelder mit "Box"-Befehlen; Text einrahmen</a>
+</li><li><a href="http://14mb.de/u/ralubenow/latex.html#22">22. Druckereinstellungen: Qualität "Normal" oder "Draft"; nur bestimmte Seiten drucken</a>
+</li></ul>
+<p>
+</p><hr>
+<h3><a name="1">1. Über Latex</a></h3>
+<p>Latex ist ein System von Programmen, mit dem man Dateien (in den Formaten "DVI" und "PDF") von wohlformatierten Dokumenten erzeugen kann, die dann auf Druckern ausgegebenen werden können.
+</p><p>Genaugenommen ist es ein Textsetzungssystem. Im Prinzip hat es aber die Wirkung einer Textverarbeitung.
+</p><p>Es gibt dabei gewissermaßen mehrere Programmschichten:
+</p><ol>
+<li>Auf der unteren Ebene arbeitet ein Programm namens "TeX", das seit 1977 von Donald E. Knuth entwickelt wurde und schon 1982 brauchbare Ergebnisse lieferte.
+<p>
+</p></li><li>Da es sehr viel Detailarbeit erfordert, mit TeX Dokumente zu erstellen, entwickelte Leslie Lamport ein Makropaket, das diese Arbeit für den Benutzer erleichtern sollte. In Kombination mit TeX wird dieses Makropaket "LaTeX" (im folgenden, zur besseren Lesbarkeit: Latex) genannt.
+<p>
+</p></li><li>Es gibt eine große Menge an Zusatzpaketen für Latex. Eine große Paket-Sammlung ist "<a href="http://www.komascript.de/">KOMA-Script</a>" von Markus Kohm u.a.. KOMA-Script stellt die hier zugrundegelegte Dokumentklasse für Briefe im deutschen Sprachraum "<tt>scrlttr2</tt>" zur Verfügung.
+</li></ol>
+<p>
+</p><hr>
+<h3><a name="2">2. Tutorials, auf die später gelegentlich verwiesen wird. Bücher zu Latex</a></h3>
+<p>Viele Latex-Distributionen liefern allerhand Dokumentation im pdf-Fomrat mit. Bei mir (SuSE 10.0) wurden standardmäßig wichtige Tutorials in das Verzeichnis
+</p><pre><a href="file:///usr/share/texmf/doc/latex/general">/usr/share/texmf/doc/latex/general</a></pre>
+<p>installiert. Dort findet man insbesondere
+</p><ol>
+<li><tt><span style="color: rgb(204, 0, 0);">l2kurz.pdf</span></tt>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+Die "Latex2e-Kurzbeschreibung"
+</li><li><tt><span style="color: rgb(204, 0, 0);">lshort.pdf</span></tt>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+The "Not So Short Introduction to Latex2e"
+</li></ol>
+<p>Für unsere Zwecke ist auch das Dokument
+</p><ol start="3">
+<li><tt><span style="color: rgb(204, 0, 0);">scrguide.pdf</span></tt>
+&nbsp;
+&nbsp;
+Die Anleitung "Das Koma-Script-Paket"
+</li></ol>
+<p>wichtig, das bei mir in das Verzeichnis
+</p><pre><a href="file:///usr/share/texmf/doc/latex/koma-script">/usr/share/texmf/doc/latex/koma-script</a></pre>
+<p>automatisch installiert wurde. Diese Dokumente sollte man zur Hand haben, das heißt, man sollte sie sich gegebenenfalls in das Arbeitsverzeihnis kopieren. Sind sie nicht schon im System vorhanden, kann man sie auch leicht über Suchmaschinen finden und aus dem Internet herunterladen.
+</p><p>Empfehlenswert ist auch
+</p><ul>
+<li>das <a href="http://en.wikibooks.org/wiki/LaTeX">Latex-Wikibook</a> (englisch)
+</li></ul>
+<p>sowie zu Spezialfragen zu Fonts, das Dokument
+</p><ul>
+<li><tt><span style="color: rgb(204, 0, 0);">fntguide.dvi</span></tt>
+&nbsp;
+&nbsp;
+ "Latex2e-Font selection"
+</li></ul>
+<p>aus dem Verzeichnis
+</p><pre><a href="file:///usr/share/texmf/doc/latex/base">/usr/share/texmf/doc/latex/base</a></pre>
+<p>in dem es noch einige weitere interessante Dokumente gibt. Weiterhin gibt es eine umfangreiche FAQ-Liste im Nur-Text-Format in dem Verzeichnis
+</p><pre><a href="file:///usr/share/texmf/doc/help/faq/de-tex-faq">/usr/share/texmf/doc/help/faq/de-tex-faq</a></pre>
+<p>Eine schöne Befehlsübersicht findet man zudem <a href="http://www.win.tue.nl/~setalle/var/latex2e.html">hier</a>.
+</p><p>Im folgenden werde ich gelegentlich insbesondere auf die drei zuerst genannten Tutorials verweisen, da ich ja nicht darstellen muß, was schon sehr gut und detailliert beschrieben ist.
+</p><p>Diese Seite schreibe ich dennoch, weil es mir manchmal zu mühsam ist, aus den systematischen Darstellungen die Befehle herauszusuchen, die ich als Benutzer, der von WYSIWYG ("What you see is what you get")-Textverarbeitungen wie "Microsoft Word" oder "OpenOffice.org Writer" kommt, konkret brauche.
+<br>Ich möchte Latex so flexibel wie eine der genannten Textverarbeitungen nutzen können und mir dabei auch die Freiheit erarbeiten, typographische Vorgaben anderer für mich brechen zu können, wenn ich es denn will.
+</p><hr width="30%">
+<p>Weiterhin gibt es auch einige deutsche Bücher zu Latex, z.B.
+</p><ul>
+<li>"<a href="http://www.amazon.de/LaTeX-Begleiter-Frank-Mittelbach/dp/382737166X/ref=sr_1_1?ie=UTF8&s=books&qid=1273261484&sr=8-1">Der LaTeX-Begleiter</a>",
+<p>
+</p></li><li>"<a href="http://www.amazon.de/Komplettes-Starterkit-einfachen-Einstieg-Satzsystem/dp/3827265177/ref=sr_1_6?ie=UTF8&s=books&qid=1273261484&sr=8-6">Jetzt lerne ich LaTeX</a>"
+</li></ul>
+<p>Auch speziell zu Koma-Script gibt es Bücher:
+</p><ul>
+<li>"<a href="http://www.oreilly.de/catalog/komascripttbger/">KOMA-Script - kurz &amp; gut</a>",
+<p>
+</p></li><li>"<a href="http://www.lob.de/cgi-bin/work/suche?flag=new&stich1=3865412912&id=L7m02OQOZKt9&frame=yes">KOMA-Script - Eine Sammlung von Klassen und Paketen für LaTeX 2e"</a> (Das dürfte "scrguide.pdf" in Buchform sein).
+</li></ul>
+<p>
+</p><hr>
+<h3><a name="3">3. Ein einfaches Latex-Dokument erzeugen, betrachten und ausdrucken</a></h3>
+<p>Latex setzt verstärkt auf sog. "Dokumentklassen". Diese entsprechen den "Dokumentvorlagen" in Textverarbeitungen.
+</p><p>Am Anfang einer Latex-Quelldatei (mit der Dateiendung ".tex") muß man also angeben, welche Art von Dokument man erstellen möchte. Das tut man, indem man eine der Dokumentart entsprechende Dokumentklasse auswählt.
+</p><p>Es gibt zum Beispiel die Standard-Dokumentklassen <tt>book</tt>, <tt>article</tt> und <tt>letter</tt>.
+</p><p>Außerdem muss man Latex in jeder Quelldatei mitteilen, wo der Dokumenttext beginnt, und wo er endet.
+</p><p>Eine sehr einfache, aber gültige Latex-Quelldatei "hallo.tex" könnte also so aussehen:
+</p><pre>\documentclass{article}
+\begin{document}
+Hallo Welt
+\end{document}
+</pre>
+<p>Wie man sieht, werden Latex-Befehle zur Unterscheidung von normalem Text mit einem Backslash eingeleitet, und Argumente werden den Befehlen innerhalb von geschweiften Klammern übergeben.
+</p><p>Die Datei "hallo.tex" kann man dann also mit dem Befehl
+</p><pre>latex hallo.tex</pre>
+<p>kompilieren. Dadurch sollte man im Verzeichnis eine Datei "hallo.dvi" (".dvi" für "device-independent") erhalten. Unter Linux kann man diese mit dem Befehl
+</p><pre>xdvi hallo.dvi</pre>
+<p>betrachten. Den Datei-Betrachter "xdvi" kann man über die Datei "/home/user/.xdvirc" einrichten. Sinnvoll ist dort z.B. die Zeile
+</p><pre>xdvi.shrinkFactor: 5</pre>
+<p>damit Dokumente gleich in einer vernünftigen Größe dargestellt werden. Für "Maximiert starten" ist dagegen der Windowmanager (z.B. KDE, GNOME, bei mir: WindowMaker) zuständig, so daß dies gegebenenfalls dort einzurichten wäre. Auch ein Blick in "<tt>man xdvi</tt>" lohnt sich.
+</p><p>Eine pdf-Datei "hallo.pdf" erhält man aus seiner ".tex"-Datei man mit dem Befehl
+</p><pre>pdflatex hallo.tex</pre>
+<p>Zusätzlich gibt es noch die Möglichkeit, die dvi-Datei mit dem Befehl
+</p><pre>dvipdfm hallo.dvi</pre>
+<p>in eine pdf-Datei umzuwandeln (die man mit kpdf, ocular oder dem Acrobat Reader ("acroread") betrachten kann).
+</p><p>Die dvi-Datei kann man mit dem Befehl
+</p><pre>dvips hallo.dvi</pre>
+<p>entweder direkt ausdrucken, oder man erhält dadurch eine ps-Datei (PostScript) "hallo.ps", die man dann mit
+</p><pre>lpr hallo.ps</pre>
+<p>ausdrucken kann. Voraussetzung dafür ist, daß der Drucker und das Drucksystem ordnungsgemäß eingerichtet sind.
+</p><p>
+</p><hr>
+<h3><a name="4">4. Anpassung an deutsche Verhältnisse: DIN-A4-Papier, Umlaute und KOMA-Skript-Klassen</a></h3>
+<p>Die eben verwendete Dokumentklasse <tt>article</tt> kommt wie Latex selbst aus den USA und ist daher nicht ohne weiteres an die Verhältnisse in Deutschland angepaßt. Das heißt, ohne Zusätze würde das (etwas breitere und weniger hohe) amerikanische Papierformat verwendet, und die deutschen Umlaute "äöü" usw. würden nicht erkannt.
+</p><p>Die Dokumentklassen aus dem sog. KOMA-Skriptpaket sind besser an die deutschen Besonderheiten angepaßt. Für Geschäftsbriefe gibt es dort die ausgezeichnete Dokumentklasse <tt>scrlttr2</tt> von Markus Kohm, die im folgenden zugrundegelegt wird.
+</p><p>(Weitere geeignete Dokumentklassen aus anderen Paketen wären <tt>g-brief</tt> und <tt>dinbrief</tt>.)
+</p><p>Zusätzlich zu <tt>scrlttr2</tt> sollte man wegen der Anpassungen an Deutschland noch zwei andere Pakete einbinden, so daß das bisherige Ergebnis dann so aussieht:
+</p><pre>\documentclass{scrlttr2}
+\usepackage{german}
+\usepackage[latin1]{inputenc}
+\begin{document}
+Grüße aus Köln
+\end{document}
+</pre>
+<p>Den Bereich in einer Latex-Quelldatei zwischen "\documentclass{...}" und "\begin{document}" bezeichnet man als "Präambel". Die Befehle, die man dorthin schreibt, stellen wichtige Weichen für die Formatierung des ganzen Dokuments.
+</p><p>Wollte man nach der neuen deutschen Rechtschreibung schreiben, sollte man statt "<tt>german</tt>" das Paket "<tt>ngerman</tt>" einbinden. Dann hieße es also statt der Zeile oben:
+</p><pre>\usepackage{ngerman}</pre>
+<p>
+</p><hr>
+<h3><a name="5">5. Regeln für Leerzeichen und Maße; neue Zeilen und neue Absätze einfügen</a></h3>
+<p>Im Text versteht Latex ein Leerzeichen zwischen Wörtern als ein Leerzeichen. Beliebig viele weitere Leerzeichen zwischen Wörtern werden dann aber ignoriert, so daß z.B. drei Leerzeichen wiederum als nur insgesamt ein Leerzeichen interpretiert werden.
+</p><p>Will man einen größeren Leerbereich zwischen zwei Wörtern haben, muß man den Befehl
+</p><pre>\hspace{18pt}</pre>
+<p>(für "horizontal space") verwenden. In dem Beispiel wurden dem Befehl "18pt" als Argument für eine Maßeinheit mitgegeben. Viele Latex-Befehle verlangen in dieser Weise Argumente in Maßeinheiten. Gültige Maßeinheiten sind
+</p><ul>
+<li>pt
+</li><li>mm
+</li><li>cm
+</li><li>em
+</li></ul>
+<p>Manche Längenmaße sind auch in Variablen gespeichert, die über Befehle in Latex angesprochen werden können. Den Standardzeilenabstand kann man z.B. über
+</p><pre>\baselineskip</pre>
+<p>ansprechen.
+</p><p>Ein einzelner Zeilenumbruch im Quelltext wird von Latex ignoriert.
+<br>Will man im Dokument einen neuen Absatz erzeugen, muß man entweder eine leere Zeile in den Quelltext einfügen.
+<br>Oder man verwendet den Befehl "<tt>\par</tt>".
+</p><p>Lediglich eine neue Zeile innerhalb eines Absatzes erreicht man mit "\\", einer gebräuchlichen Kurzform des Befehls "<tt>\newline</tt>".
+</p><p>
+</p><hr>
+<h3><a name="6">6. 1,5- und 2-zeilige Zeilenabstände, Abstände nach Zeilen und Absätzen</a></h3>
+<p>Um 1, 1,5- und 2-zeilige Zeilenabstände zu erreichen, bindet man zunächst in der Präambel das Paket "<tt>setspace</tt>" ein:
+</p><pre>\usepackage{setspace}</pre>
+<p>Dann stehen einem im Dokument die Befehle
+</p><pre>\singlespace
+\onehalfspace
+\doublespace
+</pre>
+<p>zur Verfügung. Weiß man schon im voraus, daß im gesamten Dokument ein 1,5-zeilger Zeilenabstand verwendet werden soll, kann man das dem Paket auch mit einer sog. Option mitgeben:
+</p><pre>\usepackage[onehalfspacing]{setspace}</pre>
+<p>Daran sieht man, daß abgesehen davon, daß Latex-Befehle oft <b>Argumente</b> verlangen (die in geschweiften Klammern übergeben werden), manche auch zusätzlich mit <b>Optionen</b> aufgerufen werden können, die dann vor den Argumenten in eckigen Klammern übergeben werden.
+</p><hr width="30%">
+<p>Den Abstand nach einer bestimmten neuen Zeile innerhalb eines Absatzes kann man mit
+</p><pre>\\[18pt]</pre>
+<p>erhöhen, entsprechend den Abstand nach einem bestimmten Absatz mit
+</p><pre>\par \vspace{18pt}</pre>
+<p>Den Abstand <b> nach jedem Absatz</b> kann man mit
+</p><pre>\setlength{\parskip}{18pt}</pre>
+<p>umstellen, den allgemeinen Absatzeinzug mit:
+</p><pre>\setlength{\parindent}{0pt}</pre>
+<p>An diesen beiden Beispielen sieht man, daß Latex-Befehle auch mehrere Argumente verlangen können, die dann in einer entsprechenden Anzahl von Paaren geschweifter Klammern übergeben werden.
+<br>Mit dem Befehl
+</p><pre>\setlength{\Längenmaßvariable}{Maßzahl Maßeinheit}</pre>
+kann man also wie gezeigt auf die oben genannten Längenmaßvariablen Einfluß nehmen.
+<p>(Herabsetzen von "<tt>\parindent</tt>" auf "0pt" schafft übrigens auch Abhilfe, wenn sich ungewollte Leerzeichen bei "\\" einschleichen, ein Problem, das in "<a href="http://14mb.de/u/ralubenow/latex.html#2">lshort.pdf</a>" in Kapitel 6.1.13 beschrieben ist.)
+</p><hr width="30%">
+<p>Zusammenfassend hier wieder ein Beispielquelltext
+<br>(Quelltext-Kommentare, die von Latex ignoriert werden sollen, kann man nach dem Zeichen '%' einfügen):
+</p><pre>\documentclass{scrlttr2}
+\usepackage{german}
+\usepackage[latin1]{inputenc}
+\usepackage{setspace}        % Paket setspace für 1,5zeilig, usw..
+\setlength{\parskip}{12pt}  % Abstand nach jedem Absatz
+\setlength{\parindent}{0pt} % Absatzeinrückung (hier keine (0pt))
+\begin{document}
+Willkommen im Absatzdokument. Erstmal eine\\neue Zeile. Doch es geht weiter, denn hier
+
+beginnt ein neuer Absatz.\par
+Und noch einer. Und      nochmal eine\newline neue Zeile, wobei wir die nächste
+sehr weit\\[2 cm]nach unten rücken,
+wobei mancher Text\hspace{1 cm}auch nach rechts rücken kann.
+Aber auch Absätze können nach unten gerückt werden:\par \vspace{2\baselineskip}
+
+\singlespace
+Diese Zeilen wurden mit einfachem Zeilenabstand formatiert.\\
+Diese Zeilen wurden mit einfachem Zeilenabstand formatiert.\\
+Diese Zeilen wurden mit einfachem Zeilenabstand formatiert.\par
+\onehalfspace
+Diese Zeilen wurden mit eineinhalbfachem Zeilenabstand formatiert.\\
+Diese Zeilen wurden mit eineinhalbfachem Zeilenabstand formatiert.\\
+Diese Zeilen wurden mit eineinhalbfachem Zeilenabstand formatiert.\par
+\doublespace
+Diese Zeilen wurden mit doppeltem Zeilenabstand formatiert.\\
+Diese Zeilen wurden mit doppeltem Zeilenabstand formatiert.\\
+Diese Zeilen wurden mit doppeltem Zeilenabstand formatiert.\par
+\end{document}
+</pre>
+<p>
+</p><hr>
+<h3><a name="7">7. Hängende Absätze</a></h3>
+<p>Hängende Absätze, bei denen auch die erste Zeile mit eingerückt wird, erhält man mit folgender Syntax:
+</p><pre>\hangafter=-2\hangindent=2cm Dieser Absatz ist hängend eingerückt.</pre>
+<p>
+</p><hr>
+<h3><a name="8">8. Linksbündig, rechtsbündig, zentriert. "Umgebungen"</a></h3>
+<p>Einen Bereich zwischen den Befehlen (meist Zeilen)"<tt>\begin{bereich}</tt>" und "<tt>\end{bereich}</tt>" nennt man "Umgebung".
+</p><p>Linksbündige, rechtsbündige und zentrierte Absätze erhält man durch folgende Umgebungen:
+</p><pre>\begin{flushleft}
+Dieser Text ist\\linksbündig.
+\end{flushleft}
+
+\begin{flushright}
+Dieser Text ist\\rechtsbündig.
+\end{flushright}
+
+\begin{center}
+Dieser Text ist\\zentriert.
+\end{center}
+</pre>
+<p>Alternativ kann man den Text aber auch als Argument an entsprechende Befehle übergeben, also z.B.:
+</p><pre>\flushright{Dieser Text ist rechtsbündig.}</pre>
+<p>Die genannten Befehle eröffnen aber jeweils einen neuen Absatz, so daß die vertikalen Textabstände möglicherweise zu groß werden.
+<br>Linksbündig, rechtsbündig und zentriert erreicht man innerhalb eines Absatzes mit:
+</p><pre>\raggedright
+\raggedleft
+\centering</pre>
+<p>Zu beachten ist, daß <tt>\raggedright</tt> zu linksbündig führt (und nicht etwa zu rechtsbündig).
+</p><p>
+</p><hr>
+<h3><a name="9">9. Ein erster Brief mit scrlttr2</a></h3>
+<p>Inzwischen sollten genug Latex-Grundkenntnisse vorhanden sein, um mit <tt>scrlttr2</tt> einen ersten Brief zu schreiben.
+</p><p>Die Dokumentklasse <tt>scrlttr2</tt> bringt grundsätzlich alle Formatierungen mit, die für einen Brief erforderlich sind.
+</p><p>Wie sieht ein Brief eigentlich aus? Auf der ersten Seite eines Briefes befindet sich
+</p><ul>
+<li>ein Briefkopf mit Absenderangaben,
+</li><li>ein Adressfeld mit den Angaben zum Empfänger,
+</li><li>das Datum,
+</li><li>eine Betreffzeile,
+</li><li>eine Geschäftszeile (optional),
+</li><li>die Anrede "Sehr geehrter ...",
+</li><li>der Brieftext
+</li><li>eine Fußzeile, bzw. ein Fußbereich.
+</li></ul>
+<p>Auf den folgenden Briefseiten befindet sich
+</p><ul>
+<li>eine Kopfzeile mit der jeweiligen Seitenzahl
+</li><li>weiterer Brieftext,
+</li><li>eine Fußzeile (optional),
+</li><li>die Grußformel.
+</li></ul>
+<p>Das alles weiß <tt>scrlttr2</tt> und stellt entsprechende Formatierungsvorschläge bereit.
+</p><p>Im Prinzip müssen neben dem Haupttext des Briefes "nur noch" die Daten in spezielle, von <tt>scrlttr2</tt> verwendete Variablen eingetragen werden.
+<br>Dann können aus diesen Daten und den bereits eingebauten Formatierungen automatisch ein Brief erzeugt werden.
+</p><p>Die Namen der Variablen sind in <a href="http://14mb.de/u/ralubenow/latex.html#2">scrguide.pdf</a> in Kapitel 6.3.3, Tabelle 6.4, im einzelnen dargestellt und beschrieben. Der Absendername wird z.B. in einer Variable namens <tt>fromname</tt> gespeichert, die Absenderadresse in <tt>fromaddress</tt>.
+<br>Dies geschieht im Quelltext nach immer demselben Muster mit folgendem Befehl, der als Argumente den Variablennamen und den neuen Variableninhalt entgegennimmt:
+</p><pre>\setkomavar{fromname}{Anton Absend}</pre>
+<p>Diese "<tt>\setkomavar{}{}</tt>"-Befehle sollten im Quelltext vor "<tt>\begin{document}</tt>" (oder kurz danach) geschrieben werden, damit die Variableninhalte definiert sind, bevor <tt>scrlttr2</tt> sie im Kompiliervorgang verwenden will.
+</p><p>Als Besonderheiten möchte <tt>scrlttr2</tt> nach "<tt>\begin{document}</tt>" noch die Befehle
+</p><pre>\begin{letter}{Egon Empfang\\Empfängergasse 5\\9873 Musterstadt}</pre>
+und
+<pre>\opening{Sehr gehrter Herr Empfang,}</pre>
+<p>(wenn der Empfänger "Empfang" heißt und in der "Empfängergasse" in "Musterstadt" wohnt) haben.
+</p><p>Erst dieser "<tt>opening{}</tt>-Befehl führt zahlreiche Elemente des Seitenaufbaus durch (näheres siehe <a href="http://14mb.de/u/ralubenow/latex.html#2">scrguide.pdf</a> ).
+</p><p>Dem "<tt>\documentclass{scrlttr2}</tt>"-Befehl am Quelltextanfang können in eckigen Klammern noch einige Optionen mitgegeben werden, die in <a href="http://14mb.de/u/ralubenow/latex.html#2">scrguide.pdf</a>, Kapitel 6.2, im einzelnen dargestellt sind.
+</p><p>Ein einfacher Brief mit scrlttr2 könnte dann also so aussehen:
+</p><pre>\documentclass[paper = a4]{scrlttr2}
+\usepackage{german}
+\usepackage[latin1]{inputenc}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+
+\setkomavar{fromname}{Anton Absend}
+\setkomavar{fromaddress}{Absendweg 1\\9876 Musterstadt}
+\setkomavar{subject}{Brief mit Latex}
+
+\begin{document}
+\begin{letter} {Egon Empfang\\Empfängergasse 5\\9873 Musterstadt}
+\opening{Sehr geehrter Herr Empfang,}
+Dieser Brief wurde mit Latex erstellt.\par
+Ich hoffe, das freut Sie so sehr wie mich.
+\closing{Herzliche Grüße}
+\end{letter}
+\end{document}
+</pre>
+<p>"Toll!", wird der eine sagen, "Alles automatisch!". 
+<br>"Schlecht!", wird der andere sagen, "Das sieht alles überhaupt nicht so aus, wie ich es gern hätte!". 
+</p><p>Macht nichts: Das ist nicht das letzte Wort zum Brieflayout. Mit weiteren Latex-Kenntnissen kann man noch jede Menge Anpassungen vornehmen.
+</p><p>Hier nochmal ein etwas umfangreicheres Beispiel für das Prinzip der Optionen und Variablen von <tt>scrlttr2</tt>:
+</p><pre>\documentclass[paper = a4,
+               fromalign = right,
+               fromphone = on,
+               locfield = wide]{scrlttr2}
+\usepackage{german}
+\usepackage[latin1]{inputenc}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+
+\setkomavar{fromname}{Anton Absend}
+\setkomafont{fromname}{\sffamily \large} % Wird weiter unten erklärt.
+\setkomavar{fromaddress}{Absendweg 1\\9876 Musterstadt}
+\setkomavar{fromphone}{01234 / 5678}
+\setkomavar*{fromphone}{Tel.: }
+\setkomavar{location}{Briefabsender\\Anton Absend\\Absendweg 1\\9876 Musterstadt\\Tel.: \usekomavar{fromphone}}
+\setkomavar{subject}{Brief mit Latex}
+\setkomavar{place}{Musterstadt}
+\setkomavar{placeseparator}{, den }
+\setkomavar{date}{\today}
+\setkomavar{yourmail}{1.1.2003}
+\setkomavar{yourref}{76/54/321}
+\setkomavar{myref}{123/456/789}
+\setkomavar{invoice}{rn-123}
+\setkomavar{phoneseparator}{}
+
+\begin{document}
+\begin{letter} {Egon Empfang\\Empfängergasse 5\\9873 Musterstadt}
+\opening{Sehr geehrter Herr Empfang,}
+Dieser Brief wurde mit Latex erstellt.\par
+Ich hoffe, das freut Sie so sehr wie mich.
+\closing{Mit freundlichen Grüßen}
+\end{letter}
+\end{document}
+</pre>
+<p>Schon gar nicht schlecht, finde ich.
+</p><p>
+</p><hr>
+<h3><a name="10">10. Fett, kursiv und unterstrichen</a></h3>
+<p>Fettgedruckte Schrift erhält man mit
+</p><pre>\textbf{Dieser Text wird fett gedruckt.}</pre>
+<p>Kursive Schrift mit
+</p><pre>\textit{Dieser Text wird kursiv gedruckt.}</pre>
+<p>Unterstreichen geht mit dem Paket "<tt>ulem</tt>". Dieses wird in der Präambel mit
+</p><pre>\usepackage{ulem}</pre>
+<p>eingebunden. Dann steht im Text der Befehl
+</p><pre>\uline{Dieser Text wird unterstrichen.}</pre>
+<p>zur Verfügung, und auch
+</p><pre>\uuline{Dieser Text wird doppelt unterstrichen.}</pre>
+<p>für doppeltes Unterstreichen (sowie noch einige weitere Befehle für noch ein paar andere Arten zu unterstreichen).
+</p><p>Zu beachten ist, daß Latex-Befehle auch <b>verschachtelt</b> werden können. Das heißt, man kann einem Latex-Befehl als Argument innerhalb seiner geschweiften Klammern gegebenenfalls einen anderen Latex-Befehl mitgeben, der ebenfalls ein Argument innerhalb weiterer geschweifter Klammern erhalten kann.
+</p><p>Auf diese Weise kann man z.B. fetten und zugleich kursiven Text erhalten:
+</p><pre>\textbf{\textit{Dieser Text wird fett und zugleich kursiv gedruckt.}}</pre>
+<p>Bei solchen Befehlskonstruktionen muß man aufpassen, daß man die richtige Anzahl geschweifter Klammern an die richtigen Stellen schreibt, da es sonst zu Fehlermeldungen beim Kompilieren kommt.
+<br>Im Editor "vim" gibt es dazu eine hilfreiche Funktion: Drückt man in "vim" im Befehlsmodus "%" über einer geschweiften Klammer, springt der Cursor zu deren Gegenstück. Wird kein Gegenstück gefunden, ertönt ein Signalton.
+</p><p>
+</p><hr>
+<h3><a name="11">11. Schriftarten (Fonts) und Schriftgrößen</a></h3>
+<p>In Briefen verwende ich in der Regel zwei Fonts, einen mit Serifen und einen ohne. In den Beispielen oben hat man gesehen, daß in Latex als Standardfont bereits ein Serifenfont eingestellt ist. Zwischen dem Font mit und dem ohne Serifen kann man mit den Befehl
+</p><pre>\textsf{Dieser Text wird mit einem Font ohne Serifen gedruckt.}
+\textrm{Dieser Text wird mit einem Serifenfont gedruckt.}</pre>
+<p>umschalten ("rm" in "textrm" steht für "Roman"). Alternativ gehen auch die Befehle
+</p><pre>\sffamily
+\rmfamily</pre>
+<p>die keine Argument in geschweiften Klammern benötigen.
+</p><p>Diese Befehle sollte man auch verwenden, wenn man in <tt>scrlttr2</tt> die Fonteinstellungen für Variableninhalte vornimmt:
+</p><pre>\setkomafont{fromname}{\sffamily \large \bfseries}
+</pre>
+<p>("<tt>\bfseries</tt>" ist der argumentlose Befehl für Fettdruck ("<tt>\itseries</tt>" der für Kursivdruck). Weitere Angaben dazu findet man in <a href="http://14mb.de/u/ralubenow/latex.html#2">fntguide.dvi</a>, Kapitel 2.1 (bei mir S. 6).
+
+</p><p>Bindet man in der Präambel die Pakete
+</p><pre>\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{helvet}</pre>
+<p>ein, nutzt man die Fonts "<tt>Times Roman</tt>" (mit Serifen) und "<tt>Helvetica</tt>" (ohne Serifen).
+</p><p>Zuerst dachte ich, es wäre für gutaussehende Briefe nötig, TrueType-Fonts aus Windows zu konvertieren (was im Prinzip möglich, aber nicht ganz einfach ist), doch dann fiel mir auf, daß ich mit den obigen Fonts eigentlich sehr zufrieden bin.
+</p><p>Es gibt auch eine sehr große Anzahl weiterer Fonts für Latex. Installation (die bei den Fonts, die schon in der Distribution sind, aber nicht mehr nötig ist) und Auswahl können aber schwierig werden. Das Dokument <a href="http://14mb.de/u/ralubenow/latex.html#2">fntguide.dvi</a> kann gegebenenfalls einen Einstieg in dieses Thema geben.
+</p><p>Die Fontgröße stellt man - etwas ungewöhnlich - mit folgenden Befehlen ein:
+</p><ul>
+<pre><li>\tiny
+</li><li>\scriptsize
+</li><li>\footnotesize
+</li><li>\small
+</li><li>\normalsize
+</li><li>\large
+</li><li>\Large
+</li><li>\LARGE
+</li><li>\huge
+</li><li>\Huge
+</li></pre>
+</ul>
+<p>Meistens genügt das. Allerdings hatte ich damit etwas Mühe, den serifenlosen Font in "11pt" zu erreichen. Schließlich habe ich dafür über <a href="http://14mb.de/u/ralubenow/latex.html#2">fntguide.dvi</a>, Kapitel 2.3 (bei mir S. 7) diesen Befehl gefunden:
+</p><pre>\textsf{\fontsize{11}{\baselineskip}\selectfont Serifenloser Text in 11pt.}</pre>
+<p>Die Fontgrößen wie "</p><pre>\Large</pre>" usw. sind relativ zu einer Standardfontgröße des Dokuments. Diese kann man in der Regel der Dokumentklasse als erste Option mitgeben.
+<br>Zur Auswahl stehen "<tt>10 pt</tt>", "<tt>11 pt</tt>" und "<tt>12 pt</tt>", also z.B.
+<pre>\documentclass[10 pt, paper = a4]{scrlttr2}
+\usepackage{german}
+\usepackage[latin1]{inputenc}
+\begin{document}
+Hallo
+\Large Welt!
+\end{document}
+</pre>
+<p>
+</p><hr>
+<h3><a name="12">12. Kopf- und Fußzeile der ersten Seite</a></h3>
+<p>Wie oben schon beschrieben, kann man die Kopfzeile der ersten Seite mit 
+</p><pre>\setkomavar{fromname}{Anton Absend}
+\setkomavar{fromaddress}{Absendweg 1\\9876 Musterstadt}
+</pre>
+<p>einrichten lassen. Weitere veränderbare Werte dazu sind in <a href="http://14mb.de/u/ralubenow/latex.html#2">scrguide.pdf</a>, Kapitel 6.4.1, im einzelnen beschrieben, die Einrichtung der ersten Fußzeile entsprechend in Kapitel 6.4.2.
+</p><p>Man kann diese Bereiche jedoch auch freier mit allgemeinen Latex-Befehlen gestalten mit den Befehlen:
+</p><pre>\firsthead{}
+\firstfoot{}
+</pre>
+<p>
+</p><hr>
+<h3><a name="13">13. Konstanten Quelltext in eine ".lco"-Datei auslagern</a></h3>
+<p>Wenn das Layout des Briefes fertiggestellt ist, und man viele Briefe mit diesem Layout schreibt, stellt man fest, daß weite Teile der ".tex"-Datei immer gleich bleiben, z.B. alle Angaben zum gesamten Briefkopf und zum Absender.
+</p><p><tt>scrlttr2</tt> ermöglicht es, diese konstanten Teile, genauer gesagt alles, was in der Präambel steht, in eine zweite Datei mit der Endung ".lco" auszulagern. Auf diese Weise kann man seine Briefe abspeichern, ohne immer diese konstanten Teile mitspeichern zu müssen. Außerdem wird die ".tex"-Datei dadurch wesentlich kleiner und übersichtlicher und enthält schließlich wenig mehr als den Hauptbrieftext im Nur-Text-Format. 
+</p><p>Die ".lco"-Datei wird in die ".tex"-Datei eingebunden, indem man entweder ihren Namen dem "<tt>\documentclass{}</tt>"-Befehl ohne die Endung ".lco" als Option mitgibt, also bei einer Datei "constsrc.lco"
+</p><pre>\documentclass[paper=a4, ... , constsrc]{scrlttr2}</pre>
+<p>oder indem man kurz "<tt>\documentclass{}</tt>" (dem dann der Dateiname nicht als Option mitgegeben wurde) den folgenden Befehl verwendet:
+</p><pre>\LoadLetterOption{constsrc}</pre>
+<p>Voraussetzung dafür, daß die Datei "constsrc.lco" gefunden wird, ist, daß sie sich im Latex-Pfad befindet. Dafür reicht es aus, daß sie sich in demselben Verzeichnis wie die ".tex"-Datei befindet. Ein Beispiel mit dem obigen Briefbeispiel:
+</p><p>1. Datei "aletter.tex":
+</p><pre>\documentclass[paper = a4,
+               fromalign = right,
+               fromphone = on,
+               locfield = wide]{scrlttr2}
+
+\LoadLetterOption{constsrc}
+
+\setkomavar{subject}{Brief mit Latex}
+\setkomavar{yourmail}{1.1.2003}
+\setkomavar{yourref}{76/54/321}
+\setkomavar{myref}{123/456/789}
+\setkomavar{invoice}{rn-123}
+
+\begin{document}
+\begin{letter} {Egon Empfang\\Empfängergasse 5\\9873 Musterstadt}
+\opening{Sehr geehrter Herr Empfang,}
+Dieser Brief wurde mit Latex erstellt.\par
+Ich hoffe, das freut Sie so sehr wie mich.
+\closing{Mit freundlichen Grüßen}
+\end{letter}
+\end{document}
+</pre>
+<p>2. Datei "constsrc.lco":
+</p><pre>\usepackage{german}
+\usepackage[latin1]{inputenc}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\setkomavar{fromname}{Anton Absend}
+\setkomafont{fromname}{\sffamily \large}
+\setkomavar{fromaddress}{Absendweg 1\\9876 Musterstadt}
+\setkomavar{fromphone}{01234 / 5678}
+\setkomavar*{fromphone}{Tel.: }
+\setkomavar{location}{Briefabsender\\Anton Absend\\Absendweg 1\\9876 Musterstadt\\Tel.: \usekomavar{fromphone}}
+\setkomavar{place}{Musterstadt}
+\setkomavar{placeseparator}{, den }
+\setkomavar{date}{\today}
+\setkomavar{phoneseparator}{}
+</pre>
+<p>Wie gesagt, kann man jetzt zahllose Briefe nach der Art von "aletter.tex" schreiben, die sich alle auf "constsrc.lco" beziehen, ohne daß der Inhalt von "constsrc.lco" jedesmal mitgespeichert werden müßte. Nur die variablen Daten in "aletter.tex" müßten erneuert (und gespeichert) werden.
+</p><p>
+</p><hr>
+<h3><a name="14">14. Seitenränder, Größen und Positionen des Haupttextes und der anderen Briefelemente</a></h3>
+<p><tt>scrlttr2</tt> nimmt umfangreiche Berechnungen zu Größe und Position des Briefhaupttextes ("Satzspiegel") vor, die in Kapitel 2 von <a href="http://14mb.de/u/ralubenow/latex.html#2">scrguide.pdf</a> im einzelnen erläutert werden.
+</p><p>Im Ergebnis kann man den Brieftext breiter machen, indem man folgenden Befehl in die Präambel aufnimmt und dabei ein Argument übergibt, das größer als 12 ist:
+</p><pre>\typearea{15}</pre>
+<p>Gibt man dem Befehl noch eine Längenangabe als Option mit, wird der Haupttext um diese Länge nach rechts gerückt, insgesamt also z.B.:
+</p><pre>\typearea[18pt]{15}</pre>
+<p>Diese Werte sind nur ein Beispiel zur Demonstration. Ich verwende in Briefen lediglich:
+</p><pre>\typearea[6pt]{13}</pre>
+<p>Oft kann man die Seitenränder auch unmittelbar mit dem Paket "<tt>geometry</tt>" einstellen:
+</p><pre>\usepackage[margin=2cm]{geometry}</pre>
+<p>gibt einem oft einheitliche Ränder von 2cm Breite.
+</p><hr width="30%">
+<p>Vielen Briefen mit <tt>scrlttr2</tt> liegt eine ".lco"-Datei namens
+</p><pre>DIN.lco</pre>
+<p>zugrunde, die sich (bei mir) im Verzeichnis
+</p><pre><a href="file:///usr/share/texmf/tex/latex/koma-script/">/usr/share/texmf/tex/latex/koma-script/</a></pre>
+<p>befindet. Ich bin nicht sicher, ob <tt>scrlttr2</tt> diese Datei automatisch verwendet oder nicht. Jedenfalls sollte man sich diese Datei in sein Arbeitsverzeichnis kopieren und dort in "myDIN.lco" umbenennen.
+</p><p>Wenn man "myDIN.lco" betrachtet, findet man dort zahlreiche Zeilen wie
+</p><pre>\@setplength{foldmarkhpos}{3.5mm}
+\@setplength{tfoldmarkvpos}{105mm}
+\@setplength{bfoldmarkvpos}{210mm}
+\@setplength{toaddrvpos}{45mm}
+\@setplength{refvpos}{98.5mm}
+...
+</pre>
+<p>usw.. Diese Zeilen setzen die Inhalte für sogenannte "Pseudolängen" (vgl. <a href="http://14mb.de/u/ralubenow/latex.html#2">scrguide.pdf</a>, Kapitel 6.3.4).
+<br>Mit diesen Pseudolängen wird die Position zahlreicher, von <tt>scrlttr2</tt> automatisch gesetzter Briefelemente festgelegt.
+<br>Indem man diese Pseudolängen ändert, kann man also die jeweiligen Elemente auf der Briefseite nach seinen Vorstellungen verschieben.
+</p><p>Verwendet man eine <a href="http://14mb.de/u/ralubenow/latex.html#11">eigene ".lco"-Datei</a>, kann man die Zeilen aus "myDIN.lco" in seine eigene ".lco"-Datei kopieren.
+<br>Will man die Zeilen dagegen unmittelbar in einer ".tex"-Datei verwenden, muß man sie durch die Befehle "<tt>\makeatletter</tt>" und "<tt>\makeatother</tt>" einrahmen, das heißt also:
+</p><pre>\makeatletter
+\@setplength{foldmarkhpos}{3.5mm}
+\@setplength{tfoldmarkvpos}{105mm}
+...
+\makeatother
+</pre>
+<p>Interessant erscheinen vor allem folgende Pseudolängen:
+</p><p>
+</p><pre><table cellspacing="5">
+<colgroup>
+        <col width="150">
+        <col width="800">
+     </colgroup>
+<tbody><tr>
+<td>firstheadvpos</td>
+<td>Abstand zwischen Papieroberkante und Text der ersten Kopfzeile.</td>
+</tr>
+<tr>
+<td>toaddrheight</td>
+<td>Höhe der Empfängerangaben im Adressfeld.</td>
+<td></td>
+</tr>
+<tr>
+<td>refvpos</td>
+<td>Höhe der Geschäftszeile, bzw. des Haupttextes.</td>
+</tr>
+<tr>
+<td>refaftervskip</td>
+<td>Abstand zwischen Geschäftszeile/Datum und Betreff.</td>
+</tr>
+<tr>
+<td></td>
+</tr>
+<tr>
+<td>firstfootvpos</td>
+<td>Höhe der ersten Fußzeile
+<br>(Die Zeilen mit "\@addtoplength{firstfootvpos}{}" sollte man erhalten/mitkopieren).</td>
+</tr>
+</tbody></table>
+</pre>
+<hr width="30%">
+<p>Manchmal bricht die erste Seite zu früh um, so daß zu viel Platz zwischen Brieftext und Fußzeile ist. Dies paßt man mit der Option "enlargefirstpage" zu "<tt>\documentclass{}</tt>" an, und zusätzlich im Text z.B. mit dem Befehl
+</p><pre>\enlargethispage{2cm}</pre>
+<p>Wiederum ein Beispiel zum Ganzen:
+</p><pre>\documentclass[paper=a4,enlargefirstpage=true]{scrlttr2}
+\usepackage{german}
+\usepackage[latin1]{inputenc}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\typearea[6pt]{13}
+
+\makeatletter
+\@setplength{firstheadvpos}{16mm}
+\@setplength{toaddrheight}{26mm}
+\@setplength{refvpos}{89mm}
+\@setplength{refaftervskip}{0pt}
+\@setplength{firstfootvpos}{2cm}
+\@addtoplength{firstfootvpos}{\topmargin}
+\@addtoplength{firstfootvpos}{\headheight}
+\@addtoplength{firstfootvpos}{\headsep}
+\@addtoplength{firstfootvpos}{\textheight}
+\@addtoplength{firstfootvpos}{\footskip}
+\makeatother
+
+\setkomavar{fromname}{Anton Absend}
+\setkomavar{fromaddress}{Absendweg 1\\9876 Musterstadt}
+\setkomavar{subject}{Brief mit Latex}
+\firstfoot{\hrulefill\\Anton Absend, Absendweg 1, 9876 Musterstadt}
+
+\begin{document}
+\begin{letter} {Egon Empfang\\Empfängergasse 5\\9873 Musterstadt}
+\opening{Sehr geehrter Herr Empfang,}
+\enlargethispage{2cm}
+Dieser Brief wurde mit Latex erstellt.\par
+Ich hoffe, das freut Sie so sehr wie mich.
+\closing{Herzliche Grüße}
+\end{letter}
+\end{document}
+</pre>
+<p>
+</p><hr>
+<h3><a name="15">15. Einfügen von Datum, Seitenzahlen und Sonderzeichen</a></h3>
+<p>Macht man zum Datum gar keine Angaben, setzt <tt>scrlttr2</tt> automatisch das aktuelle Tagesdatum in den Brief. Will man dort irgendeinen anderen Text haben, kann man dies durch setzen der Variable "<tt>date</tt>" erreichen:
+</p><pre>\setkomavar{date}{Ein anderes Datum: 01.01.1900}</pre>
+<p>Im Text kann man das aktuelle Tagesdatum auch über den Befehl
+</p><pre>\today</pre>
+<p>abfragen. Wenn eines der Pakete "<tt>german</tt>" oder "<tt>ngerman</tt>" eingebunden ist, ist es auch gleich "deutsch" formatiert.
+</p><hr width="30%">
+<p>Das Layout von Kopf- und Fußzeilen wird auf "normalen" Seiten (bei <tt>scrlttr2</tt> sind das alle Seiten ab der zweiten) von dem Befehl "<tt>\pagestyle{}</tt>" bestimmt. Will man ab der zweiten Seite im Kopf- oder Fußbereich Seitenzahlen setzen, sollte man bei <tt>scrlttr2</tt> zunächst in der Präambel das Paket <tt>scrpage2</tt> einbinden
+</p><pre>\usepackage{scrpage2}</pre>
+<p>und dann ebenfalls in der Präambel den Befehl
+</p><pre>\pagestyle{scrheadings}</pre>
+<p>verwenden. Man wird dann feststellen, daß auf der zweiten Seite unten zentriert bereits eine Seitenzahl mit "2" gesetzt ist. Möchte man etwas Anderes haben, muß man diese automatische Setzung zunächst löschen. Das geht mit:
+</p><pre>\clearscrheadfoot</pre>
+<p>Danach kann man die Seitenzahlen nach seinen eigenen Vorstellungen setzen, z.B. mit
+</p><pre>\chead{- \pagemark -}</pre>
+<p>Weitere Möglichkeiten sind in <a href="http://14mb.de/u/ralubenow/latex.html#2">scrguide.pdf</a>, Kapitel 4, im einzelnen dargestellt.
+</p><hr width="30%">
+
+<p>Wie man bestimmte Sonderzeichen erhält, ist sehr gut in <a href="http://14mb.de/u/ralubenow/latex.html#2">l2kurz.pdf</a>, in den Kapiteln 3.4.5, 4.5 sowie in Appendix A, dargestellt.
+</p><p>
+</p><hr>
+<h3><a name="16">16. Besonderheiten bei der Eingabe bestimmter Zeichen, insbesondere Anführungszeichen</a></h3>
+<p>Das Anführungszeichen " (= Shift + 2) ist in Latex ein Steuerzeichen und führt daher nicht zur Ausgabe eines Anführungszeichens.
+<br>Die Ausgabe eines hochgestellten Anführungszeichens erhält man in Latex durch zwei "single quotes" nacheinander: <tt>''</tt>.
+<br>Deutsche Gänsefußchen erhält man (mit den Paketen "<tt>german</tt>" / "<tt>ngerman</tt>") durch:
+</p><pre>"`Hallo"'</pre>
+<p>Das Prozentzeichen leitet im Quelltext Kommentare ein (die von Latex ignoriert werden). Will man ein Prozentzeichen ausgeben, muß man im Quelltext einen Backslash davorsetzen, also <tt>\%</tt>.
+</p><p>In Latex werden Bindestrich (<tt>-</tt>), Gedankenstrich (<tt>--</tt>) und Minuszeichen <tt>$-1$</tt> (ergibt -1) unterschieden.
+</p><p>Drei Punkte, etwa am Textende, erhält man mit dem Befehl "<tt>\dots</tt>". 
+</p><p>Wegen weiterer Einzelheiten, auch bzgl. ungewollter Wortabstände, Unterbinden von Silbentrennung usw. verweise ich auf das 3. Kapitel von <a href="http://14mb.de/u/ralubenow/latex.html#2">l2kurz.pdf</a> (bei mir ab S. 6), das man einmal ganz gelesen haben sollte.
+</p><p>
+</p><hr>
+<h3><a name="17">17. Korrektureingriffe: Manueller Seitenumbruch</a></h3>
+<p>Einen manuellen Seitenumbruch erreicht man mit dem Befehl
+</p><pre>\newpage</pre>
+<p>
+</p><hr>
+<h3><a name="18">18. Aufzählungen</a></h3>
+<p>Hier ein kurzes Beispiel für Aufzählungen mit und ohne Nummerierungen in Anlehnung an <a href="http://14mb.de/u/ralubenow/latex.html#2">l2kurz.pdf</a>, Kapitel 3.9.2:
+</p><pre>\documentclass{scrlttr2}
+\usepackage{german}
+\usepackage[latin1]{inputenc}
+\begin{document}
+
+% Nummerierte Aufzählung:
+\begin{enumerate}
+\item Kommt es anders, und 
+\item als man denkt.
+\end{enumerate}
+
+\par \vspace{1cm}
+
+% Unummerierte Aufzählung:
+\begin{itemize}
+\item Ein Pfund gemischtes Hack,
+\item ein Kilo Zucker,
+\item ein Rudi Völler.
+\end{itemize} 
+
+\end{document}
+</pre>
+<p>
+</p><hr>
+<h3><a name="19">19. Tabellen</a></h3>
+<p>Tabellen stehen in einer "<tt>tabular</tt>"-Umgebung. Dem "<tt>\begin{tabular}{}</tt>-Befehl wird eine Zeichenkette als Argument übergeben, die Spaltenanzahl und Tabellenlayout bestimmt: "l" steht für eine linksbündige Spalte, "r" für eine rechtsbündige, "c" für eine zentrierte. Das Zeichen "|" gibt an, wo vertikale Tabellenlinien gesetzt werden sollen.
+</p><p>Im Text werden die Tabellenspalten durch "&amp;" voneinander getrennt.
+<br>"<tt>\hline</tt>" setzt eine horizontale Tabellenlinie.
+</p><p>Hier ein Beispiel für eine Tabelle mit 4 Spalten, 3 Zeilen und Tabellenlinien in Anlehnung an <a href="http://14mb.de/u/ralubenow/latex.html#2">l2kurz.pdf</a>, Kapitel 3.9.6:
+</p><pre>\documentclass{scrlttr2}
+\usepackage{german}
+\usepackage[latin1]{inputenc}
+\begin{document}
+
+\begin{tabular}{|r|l|l|l|}
+\hline
+Nr &amp; Name &amp; Ort &amp; Art\\
+\hline
+1 &amp; Duck &amp; Entenhausen &amp; Ente\\
+\hline
+2 &amp; Kent &amp; New York &amp; Kryptonier (?)\\
+\hline
+3 &amp; Wayne &amp; Gotham City &amp; Mensch\\
+\hline
+\end{tabular}
+
+\end{document}
+</pre>
+<p>In dem Beispiel lautete der Tabellenstring "<tt>|r|l|l|l|</tt>", für 4-spaltig, die erste Spalte rechtsbündig, die übrigen linksbündig, mit vertikalen Linien. Oft möchte man jedoch, daß eine Spalte eine bestimmte Breite hat, und daß der Text, falls er länger als die Spaltenbreite ist, innerhalb der Spalte zu einer neuen Zeile umgebrochen wird. Dies erreicht man, indem man im Tabellenstring für eine Spalte statt "<tt>l</tt>" oder "<tt>r</tt>"
+</p><pre>p{3cm}</pre>
+<p>verwendet (wobei (im Beispiel) "<tt>3cm</tt>" die Spaltenbreite angibt).
+</p><p>Diese Syntax muß man auch verwenden, wenn man innerhalb einer Tabellenspalte eine <a href="http://14mb.de/u/ralubenow/latex.html#17">Aufzählung</a> darstellen will (vgl. den Abschnitt "Other environments inside tables" im <a href="http://en.wikibooks.org/wiki/LaTeX">Wikibook</a>.
+</p><p>Tabellen die länger als eine Seite sind, sollte man statt mit der <tt>tabular</tt>-Umgebung mit der <tt>longtable</tt>-Umgebung aufbauen. Dazu muß man das <tt>longtable</tt>-Paket einbinden.
+</p><p>Innerhalb einer "<tt>longtable</tt>"-Umgebung läßt sich eine Überschrift über der Tabelle mit dem Befehl
+</p><pre>\caption*{Überschrift}\\</pre>
+<p>setzen. Ohne den Stern würde Latex der Überschrift automatisch eine Kapitelnummer aus seinem Kapitelsystem voranstellen.
+</p><p>Das <tt>booktab</tt>-Paket stellt weitere Befehle zur Verfügung, um Tabellen noch schöner zu gestalten, z.B:
+</p><pre>\toprule, \midrule, \bottomrule
+\addlinespace[6pt]
+</pre>
+<p>Der Autor des Pakets rät, in Tabellen keine vertikalen und keine doppelten Linien zuverwenden.
+</p><p>
+</p><hr>
+<h3><a name="20">20. Linien</a></h3>
+<p>Eine horizontale Linie erhält man mit
+</p><pre>\hrule</pre>
+<p>eine vertikale Linie mit
+</p><pre>\vrule</pre>
+<p>
+</p><hr>
+<h3><a name="21">21. Textfelder mit "Box"-Befehlen; Text einrahmen</a></h3>
+<p>
+</p><p>
+</p><hr>
+<h3><a name="22">22. Druckereinstellungen: Qualität "Normal" oder "Draft"; nur bestimmte Seiten drucken</a></h3>
+<p>Unter Linux läuft in der Regel der Daemon "<tt>/etc/init.d/cups</tt>" ("Common UNIX Printing System"). Mit diesem kann man Druckereinstellungen mit einem Browser vornehmen, den man auf die Adresse
+</p><pre>http://localhost:631/</pre>
+<p>richtet. Unter
+</p><pre>http://localhost:631/sam.html#13_2</pre>
+<p>wird beschrieben, wie man dabei nervtötende Passwortabfragen loswird.
+</p><p>Weitere allgemeine Druckereinstellungen kann man über YaST2 (OpenSuSE Linux) sowie (oft) über den (KDE-) Befehl
+</p><pre>kcmshell printmgr</pre>
+<p>vornehmen. Mit dem Befehl
+</p><pre>lpstat -p</pre>
+<p>kann man sich den Druckerstatus anzeigen lassen. Ähnliches liefert
+</p><pre>lpc status</pre>
+<hr width="50%">
+<p>Mit
+</p><pre>lpoptions -l</pre>
+<p>werden besondere Optionen eines Druckers angezeigt. Bei mir kann ich jeweils mit
+</p><pre>lpoptions -o "PrintoutMode=Normal"
+lpoptions -o "PrintoutMode=Draft"</pre>
+<p>über die Konsole einstellen, ob der Drucker bei den folgenden <tt>lpr</tt>-Befehlen
+</p><ul>
+<li>im langsamen Modus "Normal" ausdruckt, der relativ viel Druckertinte verbraucht oder
+</li><li>im schnellen Modus "Draft", der weniger Tinte verbraucht, aber dafür nicht ganz so schöne Ausdrucke liefert.
+</li></ul>
+<hr width="50%">
+<p>Welche Seiten tatsächlich gedruckt werden, wird schon beim Erzeugen der "<tt>.ps</tt>"-Datei mit <tt>dvips</tt> bestimmt:
+</p><pre>dvips -A file.dvi</pre>
+<p>erzeugt nur die ungeraden Seiten eines Latex-Dokuments,
+</p><pre>dvips -B file.dvi</pre>
+<p>nur die geraden. Z.B. nur die Seiten "1, 2 bis 5 und 7" erhält man in einer "<tt>.ps</tt>"-Datei" mit
+</p><pre>dvips -pp "1,2-5,7" file.dvi</pre>
+<hr width="70%">
+<br>Email: hlubenow2 {at-symbol} gmx.net
+<br><center><a href="http://14mb.de/u/ralubenow/computing.html">Zurück</a></center>
+<p><font size="-1">(Mein System: Elitegroup K7VMM+ Mainboard (Fast alles onboard: KM 266 Chipsatz, Grafik S3 ProSavage 32 MB Shared Video Memory, VIA VT 8235 AC'97 Sound), AMD Athlon 2200 XP @ 1.800 MHz, 256 MB DDR-RAM, 40 GB Maxtor HD)</font>
+
+
+<!--ADS-START--></p><div align="center"><br><div align="center"></div></div><!--ADS-END--><!-- Start Werbung 14mb.de -->
+<center>
+<script language="JavaScript" src="./Geschäftsbriefe schreiben mit LaTeX und scrlttr2 unter Linux_files/script.php"></script><!-- 46.466503059491515--><script type="text/javascript" src="./Geschäftsbriefe schreiben mit LaTeX und scrlttr2 unter Linux_files/a_script.php"></script><script type="text/javascript" src="./Geschäftsbriefe schreiben mit LaTeX und scrlttr2 unter Linux_files/jcorner.php"></script>
+
+<script type="text/javascript" src="./Geschäftsbriefe schreiben mit LaTeX und scrlttr2 unter Linux_files/script(1).php"></script><!-- 60.88381982408464--><script type="text/javascript" src="./Geschäftsbriefe schreiben mit LaTeX und scrlttr2 unter Linux_files/a_script(1).php"></script><script type="text/javascript">
+var uniqId = new Date();
+var uniqStr = uniqId.getHours()+''+uniqId.getMinutes()+''+uniqId.getSeconds()
+var adUri = 'http://www.sponsorads.de/werbemedien/picturelayer/chicago1920/aufruf.php?'+uniqStr;
+var linkedUri = 'http://www.sponsorads.de/b_click.php?u=4454&s=115833&c=2264&h=8c40456c7de7c33a0bf801b658228162'
+var upHeader = 'Chicago1920.com das neue Mafia Game !';
+eval("var uniqueImage"+uniqStr+" = "+"new Image()");
+eval("uniqueImage"+uniqStr).src = adUri;
+popupx(adUri);
+var time = 0;
+var opened = 0;
+function showx(div){
+if (opened == 0) {
+     opened = 1;
+  x=document.getElementById(div);
+  x.style.width = eval("uniqueImage"+uniqStr).width+'px';
+  //x.style.height = eval("uniqueImage"+uniqStr).height + 47;
+  var procent = Math.round((((document.body.clientWidth - eval("uniqueImage"+uniqStr).width)/2)/document.body.clientWidth)*100);
+  x.style.marginLeft = procent + '%';
+  temp1=document.getElementById('downbar46554');
+  temp2=document.getElementById('upbar46554');
+  temp1.style.width = eval("uniqueImage"+uniqStr).width+'px';
+  temp2.style.width = eval("uniqueImage"+uniqStr).width+'px';
+    x.style.display = 'block';
+}  }
+function closepopx(){
+  x=document.getElementById('sponsorads46554b');
+  x.style.display='none';
+}
+function openpopx(uri,mode){
+WindowObjectReference = window.open(uri,"adWindow","");
+if(mode==0){
+  self.focus();
+  window.focus();
+}
+closepopx();
+}
+function addBookmark(title,url) {
+if (window.sidebar) {
+window.sidebar.addPanel(title, url,"");
+} else if( document.all ) {
+window.external.AddFavorite( url, title);
+} else if( window.opera && window.print ) {
+return true;
+}
+}
+function spSetOpacity(x, opacity)
+{
+	opacity = (opacity == 100)?99.999:opacity;
+	x.style.filter = "alpha(opacity:"+opacity+")";
+	x.style.khtmlopacity = opacity/100;
+	x.style.mozopacity = opacity/100;
+	x.style.opacity = opacity/100;
+	x.style.operacity = opacity/100;
+}
+function spFadeIn(x)
+{
+    spCurrentOpacity += 15;
+    spSetOpacity(x, spCurrentOpacity);
+    if(spCurrentOpacity < 100)
+        window.setTimeout('spFadeIn(x)', 1);
+}
+function spFadeOut(x)
+{
+    spCurrentOpacity -= 25;
+    spSetOpacity(x, spCurrentOpacity);
+    if(spCurrentOpacity > 0)
+        window.setTimeout('spFadeOut(x)', 1);
+    else
+        x.style.display = "none";
+}
+imgx1_hov = new Image();
+imgx1_hov.src = "http://imgserv.sponsorads.de/images/layer/x1_hov.png";
+imgx2_hov = new Image();
+imgx2_hov.src = "http://imgserv.sponsorads.de/images/layer/x2_hov.png";
+imgx3_hov = new Image();
+imgx3_hov.src = "http://imgserv.sponsorads.de/images/layer/x3_hov.png";
+imgx4_hov = new Image();
+imgx4_hov.src = "http://imgserv.sponsorads.de/images/layer/x4_hov.png";
+imgx5_hov = new Image();
+imgx5_hov.src = "http://imgserv.sponsorads.de/images/layer/x5_hov.png";
+imgx1 = new Image();
+imgx1.src = "http://imgserv.sponsorads.de/images/layer/x1.png";
+imgx2 = new Image();
+imgx2.src = "http://imgserv.sponsorads.de/images/layer/x2.png";
+imgx3 = new Image();
+imgx3.src = "http://imgserv.sponsorads.de/images/layer/x3.png";
+imgx4 = new Image();
+imgx4.src = "http://imgserv.sponsorads.de/images/layer/x4.png";
+imgx5 = new Image();
+imgx5.src = "http://imgserv.sponsorads.de/images/layer/x5.png";
+function swapOn(id,src){
+theImg=document.getElementById(id);
+theImg.setAttribute("src",src);
+}
+function swapOff(id,src){
+theImg=document.getElementById(id);
+theImg.setAttribute("src",src);
+}
+function popupx(url){
+      document.write('<div id="sponsorads46554b" style="');
+        document.write('position:fixed;');
+        document.write('_position:absolute;');
+        document.write('left:0;');
+        document.write('top:10px;');
+        document.write('_top: expression(10+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop));');
+        document.write('display:none;');
+        document.write('background:#fff;');
+        document.write('border:1px solid #0C375F;');
+        document.write('z-index:1000;');
+      document.write('">');
+      document.write('<div id="upbar46554" style="');
+        document.write('height:23px;');
+        document.write('background:#aaa url(http://imgserv.sponsorads.de/images/layer/wrap.gif) repeat-x;');
+        document.write('border-bottom:1px solid #0C375F;');
+        document.write('text-align:right;');
+      document.write('">');
+      document.write('<span id="uptitle" style="');
+        document.write('color:#000;');
+        document.write('font-weight:normal;');
+        document.write('height:20px;');
+        document.write('_height:17px;');
+        document.write('float:left;');
+        document.write('padding-left:35px;');
+        document.write('margin-top:2px;');
+        document.write('font-size:11px;');
+        document.write('line-height:20px;');
+        document.write('font-family:Tahoma,Helvetica,Arial,sans-serif;');
+        document.write('background-image:url(http://imgserv.sponsorads.de/images/layer/arrow.png);');
+        document.write('background-repeat:no-repeat;');
+        document.write('background-position:5px 0;');
+      document.write('">');
+      document.write('<a style="text-decoration:none; color:#2B3844;" href="'+linkedUri+'">'+upHeader+'</a>');
+      document.write('</span>');
+      document.write('<a href="#" onclick="openpopx(linkedUri,0)" title="Später ansehen - Im Hintergrund öffnen">');
+      document.write('<img id="imx4" style="border:none;padding-right:6px;margin-top:2px;" src="http://imgserv.sponsorads.de/images/layer/x4.png" onmouseover="swapOn(\'imx4\',imgx4_hov.src);" onmouseout="swapOff(\'imx4\',imgx4.src);" />');
+      document.write('</a>');
+      document.write('<a href="#" onclick="closepopx(); return false" title="Fenster schliessen">');
+      document.write('<img id="imx3" style="border:none;padding-right:2px;margin-top:2px;" src="http://imgserv.sponsorads.de/images/layer/x3.png" alt="Fenster schliessen" onmouseover="swapOn(\'imx3\',imgx3_hov.src);" onmouseout="swapOff(\'imx3\',imgx3.src);" />');
+      document.write('</a>');
+      document.write('</div>');
+      document.write('<a href="'+linkedUri+'" target="_blank" onclick="openpopx(linkedUri,1);return false;"><img onload="showx(\'sponsorads46554b\');" style="display:block;border:none;margin:0;padding:0;" id="popWindow" name="popWindow" src="'+url+'" /></a>');
+      document.write('<div id="downbar46554" style="');
+        document.write('margin-top:0px;');
+        document.write('height:22px;');
+        document.write('background:#aaa url(http://imgserv.sponsorads.de/images/layer/wrap.gif) repeat-x;');
+        document.write('border-top:1px solid #0C375F;');
+        document.write('text-align:right;');
+      document.write('">');
+      document.write('<span id="downtitle" style="');
+        document.write('color:#2B3844;');
+        document.write('font-weight:normal;');
+        document.write('float:left;');
+        document.write('height:18px;');
+         document.write('padding-left:5px;');
+        document.write('padding-top:3px;');
+      document.write('">');
+      document.write('<a target ="_blank" href="http://www.sponsorads.de" title="SponsorAds - Das grosse Werbenetzwerk"><img style="border:none;padding-right:2px;" src="http://imgserv.sponsorads.de/images/layer/sponsorads.gif" /></a>');
+      document.write('</span>');
+      document.write('</div>');
+  document.write('</div>');
+}
+</script><div id="sponsorads46554b" style="position: fixed; left: 0px; top: 10px; display: none; background-color: rgb(255, 255, 255); border: 1px solid rgb(12, 55, 95); z-index: 1000; width: 400px; margin-left: 34%; background-position: initial initial; background-repeat: initial initial;"><div id="upbar46554" style="height: 23px; background-image: url(http://imgserv.sponsorads.de/images/layer/wrap.gif); background-color: rgb(170, 170, 170); border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(12, 55, 95); text-align: right; width: 400px; background-position: initial initial; background-repeat: repeat no-repeat;"><span id="uptitle" style="color:#000;font-weight:normal;height:20px;_height:17px;float:left;padding-left:35px;margin-top:2px;font-size:11px;line-height:20px;font-family:Tahoma,Helvetica,Arial,sans-serif;background-image:url(http://imgserv.sponsorads.de/images/layer/arrow.png);background-repeat:no-repeat;background-position:5px 0;"><a style="text-decoration:none; color:#2B3844;" href="http://www.sponsorads.de/b_click.php?u=4454&s=115833&c=2264&h=8c40456c7de7c33a0bf801b658228162">Chicago1920.com das neue Mafia Game !</a></span><a href="http://14mb.de/u/ralubenow/latex.html#" onclick="openpopx(linkedUri,0)" title="Später ansehen - Im Hintergrund öffnen"><img id="imx4" style="border:none;padding-right:6px;margin-top:2px;" src="./Geschäftsbriefe schreiben mit LaTeX und scrlttr2 unter Linux_files/x4.png" onmouseover="swapOn(&#39;imx4&#39;,imgx4_hov.src);" onmouseout="swapOff(&#39;imx4&#39;,imgx4.src);"></a><a href="http://14mb.de/u/ralubenow/latex.html#" onclick="closepopx(); return false" title="Fenster schliessen"><img id="imx3" style="border:none;padding-right:2px;margin-top:2px;" src="./Geschäftsbriefe schreiben mit LaTeX und scrlttr2 unter Linux_files/x3.png" alt="Fenster schliessen" onmouseover="swapOn(&#39;imx3&#39;,imgx3_hov.src);" onmouseout="swapOff(&#39;imx3&#39;,imgx3.src);"></a></div><a href="http://www.sponsorads.de/b_click.php?u=4454&s=115833&c=2264&h=8c40456c7de7c33a0bf801b658228162" target="_blank" onclick="openpopx(linkedUri,1);return false;"><img onload="showx(&#39;sponsorads46554b&#39;);" style="display:block;border:none;margin:0;padding:0;" id="popWindow" name="popWindow" src="./Geschäftsbriefe schreiben mit LaTeX und scrlttr2 unter Linux_files/aufruf.php"></a><div id="downbar46554" style="margin-top: 0px; height: 22px; background-image: url(http://imgserv.sponsorads.de/images/layer/wrap.gif); background-color: rgb(170, 170, 170); border-top-width: 1px; border-top-style: solid; border-top-color: rgb(12, 55, 95); text-align: right; width: 400px; background-position: initial initial; background-repeat: repeat no-repeat;"><span id="downtitle" style="color:#2B3844;font-weight:normal;float:left;height:18px;padding-left:5px;padding-top:3px;"><a target="_blank" href="http://www.sponsorads.de/" title="SponsorAds - Das grosse Werbenetzwerk"><img style="border:none;padding-right:2px;" src="./Geschäftsbriefe schreiben mit LaTeX und scrlttr2 unter Linux_files/sponsorads.gif"></a></span></div></div>
+
+</center><br><br><br><br><br><br>
+<!-- Ende Werbung 14mb.de -->
+<style type="text/css">
+ div#footer {
+ position:fixed;
+ bottom:0px !important;
+ width:100%;
+ height:62px;
+ margin:0px auto;
+ text-align:center;
+ color:#dad6ce;
+ 			\\	background:#918d86;
+}
+	
+a { color:#2f2e2b; }
+</style>
+<div id="footer">
+<script type="text/javascript" src="./Geschäftsbriefe schreiben mit LaTeX und scrlttr2 unter Linux_files/script(2).php"></script><!-- 77.0981031935662--><script type="text/javascript" src="./Geschäftsbriefe schreiben mit LaTeX und scrlttr2 unter Linux_files/a_script(2).php"></script><a target="_blank" href="http://www.sponsorads.de/b_click.php?u=4454&s=19906&c=2146&h=4794d99621a91870699993c3c8f2d735"><img src="./Geschäftsbriefe schreiben mit LaTeX und scrlttr2 unter Linux_files/object.php" border="0" width="468" height="60"></a>
+
+</div>
+
+<br><!-- Counter 55|97|5199|12|02|2013 --></body></html>

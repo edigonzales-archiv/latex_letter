@@ -1,0 +1,35 @@
+\ProvidesFile{standard.lco}[%
+  2002/07/09 v0.9a LaTeX2e unsupported letter-class-option]
+
+\usepackage{fontspec}
+\usepackage{xltxtra}
+
+
+% ==============================================
+%  PERSONAL DATA
+% ==============================================
+\setkomavar{fromname}{Iulius Caesar}
+\setkomavar{fromaddress}{Van Eeghenlaan 69\\1691QT Amsterdam\\Nederland}
+\setkomavar{fromphone}{+31 (0)22 7394203}
+\setkomavar{fromemail}{iulius@gmail.com}
+\setkomavar{fromfax}{+31 (0)71 5144543}
+\setkomavar{fromurl}{http://stefano.italians.nl}
+\setkomavar{frombank}{Postbank 9307157}
+\setkomavar{place}{Amsterdam}
+\setkomavar{signature}{Iulius Caesar}
+
+% ==============================================
+%  FORMATTING STUFF
+% ==============================================
+
+% === font settings
+\defaultfontfeatures{Mapping=tex-text}
+%\setmainfont {Adobe Garamond Pro}
+%\setsansfont {Gill SSi}
+\setmainfont {Zurich Lt BT}
+%\setsansfont {Zurich LtCn BT}
+
+%set the font size and leading
+%\renewcommand{\normalsize}{\fontsize{12.5}{17}\selectfont}
+
+\endinput
